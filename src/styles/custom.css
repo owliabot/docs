@@ -11,13 +11,3 @@
   --sl-color-accent: #4f46e5;
   --sl-color-accent-high: #3730a3;
 }
-
-/* Dark mode logo - brighten for visibility (no glow) */
-:root[data-theme='dark'] .site-title img {
-  filter: brightness(1.5);
-}
-
-/* Hero image - slightly brighter */
-:root[data-theme='dark'] [data-hero-image] img {
-  filter: brightness(1.4);
-}
