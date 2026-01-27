@@ -87,6 +87,11 @@ export default defineConfig({
 							translations: { 'zh-CN': '安全模型' },
 							slug: 'architecture/security',
 						},
+						{
+							label: 'vs Clawdbot',
+							translations: { 'zh-CN': '与 Clawdbot 对比' },
+							slug: 'architecture/comparison',
+						},
 					],
 				},
 				{
