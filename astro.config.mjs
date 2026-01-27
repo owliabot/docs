@@ -9,7 +9,7 @@ export default defineConfig({
 		starlight({
 			title: 'OwliaBot',
 			logo: {
-				src: './src/assets/logo.png',
+				src: './src/assets/logo.svg',
 				replacesTitle: false,
 			},
 			favicon: '/favicon.png',
