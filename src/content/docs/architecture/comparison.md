@@ -7,232 +7,155 @@ OwliaBot borrows architectural ideas from [Clawdbot](https://github.com/clawdbot
 
 ## Positioning
 
-**Clawdbot** is a full-featured AI agent platform with 7+ messaging channels, browser automation, mobile node integration, and a rich set of built-in tools. It's more like a "full-stack distribution".
+| Aspect | Clawdbot | OwliaBot |
+|--------|----------|----------|
+| Philosophy | Full-featured "distribution" | Minimal "kernel" |
+| Target users | General AI agent users | Crypto / security-focused |
+| Design goal | Feature completeness | Small attack surface |
+| Dependency count | 50+ | < 20 (target < 30) |
 
-**OwliaBot** is intentionally minimal — targeting crypto users who need security-first, self-hosted agents with a small attack surface.
+## Feature Matrix
 
-## Core Modules
+### Messaging Channels
 
-### 1. Messaging Channels
+| Channel | Clawdbot | OwliaBot |
+|---------|----------|----------|
+| Telegram DM | ✅ Full | ✅ Basic |
+| Telegram Groups | ✅ | ❌ |
+| Discord DM | ✅ Full | ✅ Basic |
+| Discord Servers | ✅ | ❌ |
+| WhatsApp | ✅ Baileys | ❌ |
+| iMessage | ✅ macOS | ❌ |
+| Signal | ✅ E2E | ❌ |
+| Slack | ✅ Bot API | ❌ |
+| Mattermost | ✅ Plugin | ❌ |
+| WebChat | ✅ Local UI | ❌ |
+| Streaming output | ✅ Draft mode | ❌ |
 
-**Clawdbot** supports 7+ channels:
-- WhatsApp (Baileys) — full support
-- Telegram — DM + groups, draft streaming
-- Discord — DM + servers
-- iMessage — macOS native
-- Signal — E2E encrypted
-- Slack — Bot API
-- Mattermost — Plugin
-- WebChat — Local UI
+### Gateway / Control Plane
 
-**OwliaBot** supports 2 channels:
-- Telegram — Basic DM ✅
-- Discord — Basic DM ✅
+| Feature | Clawdbot | OwliaBot |
+|---------|----------|----------|
+| WebSocket server | ✅ Full protocol | ❌ |
+| Multi-client support | ✅ CLI/App/Web/Nodes | ❌ |
+| Health checks | ✅ | ❌ |
+| Canvas file server | ✅ | ❌ |
+| Remote access | ✅ Tailscale/SSH | ❌ |
 
-**Gap**: Group chat support, streaming output, other channels
+### Agent Runtime
 
----
+| Feature | Clawdbot | OwliaBot |
+|---------|----------|----------|
+| LLM integration | ✅ Pi RPC | ✅ pi-ai direct |
+| Agentic loop | ✅ | ✅ (max 5 iter) |
+| Tool calling | ✅ | ✅ |
+| Streaming output | ✅ Chunks | ❌ |
+| Model failover | ✅ Multi-provider | ✅ |
+| Multi-agent routing | ✅ | ❌ |
 
-### 2. Gateway / Control Plane
+### Session Management
 
-**Clawdbot**:
-- Full WebSocket server with typed protocol
-- Multi-client connections (CLI, macOS app, Web UI, Nodes)
-- Health checks, status broadcasting
-- Canvas file server
-- Tailscale/SSH remote access
+| Feature | Clawdbot | OwliaBot |
+|---------|----------|----------|
+| Per-user sessions | ✅ | ✅ |
+| JSONL persistence | ✅ | ✅ |
+| Sliding window | ✅ | ✅ |
+| Auto compaction | ✅ | ❌ |
+| Session pruning | ✅ | ❌ |
 
-**OwliaBot**:
-- Basic HTTP entry point only
-- No WebSocket control plane
-- No external client support
+### Memory System
 
-**Gap**: WebSocket API, multi-client architecture, Canvas host
+| Feature | Clawdbot | OwliaBot |
+|---------|----------|----------|
+| memory_search tool | ✅ Semantic | ✅ Keyword |
+| memory_get tool | ✅ | ✅ |
+| Embedding API | ✅ Vector store | ❌ |
+| Auto indexing | ✅ | ❌ |
 
----
+### Cron / Scheduled Tasks
 
-### 3. Agent Runtime
+| Feature | Clawdbot | OwliaBot |
+|---------|----------|----------|
+| Heartbeat | ✅ | ✅ Basic |
+| Custom cron jobs | ✅ Dynamic | ❌ |
+| Webhooks | ✅ | ❌ |
+| Gmail Pub/Sub | ✅ | ❌ |
 
-**Clawdbot**:
-- Pi agent RPC integration (full)
-- Agentic loop + tool calling
-- Streaming output + chunk distribution
-- Model failover (multi-provider)
-- Multi-agent routing
+### Skills System
 
-**OwliaBot**:
-- pi-ai library direct calls ✅
-- Agentic loop ✅ (max 5 iterations)
-- Model failover ✅
-- Multi-agent ❌
+| Feature | Clawdbot | OwliaBot |
+|---------|----------|----------|
+| Skill format | SKILL.md | package.json + JS |
+| Loading tiers | 3 (bundled/managed/workspace) | 1 (workspace) |
+| Online registry | ✅ ClawdHub | ❌ |
+| Hot reload | ✅ | ✅ |
+| Config gating | ✅ | ❌ |
 
-**Status**: Core functionality aligned, missing streaming and multi-agent
+### Nodes (Mobile Integration)
 
----
+| Feature | Clawdbot | OwliaBot |
+|---------|----------|----------|
+| iOS/Android/macOS pairing | ✅ | ❌ |
+| Canvas rendering (A2UI) | ✅ | ❌ |
+| Camera snap/clip | ✅ | ❌ |
+| Screen recording | ✅ | ❌ |
+| Location access | ✅ | ❌ |
+| Push notifications | ✅ | ❌ |
 
-### 4. Session Management
+### Browser Control
 
-**Clawdbot**:
-- Per-channel-user sessions
-- JSONL persistence
-- Sliding window + auto compaction
-- Session pruning (prevents overflow)
-- `/compact` command
+| Feature | Clawdbot | OwliaBot |
+|---------|----------|----------|
+| Playwright | ✅ | ❌ (by design) |
+| Remote browser | ✅ | ❌ |
+| Chrome extension | ✅ Relay | ❌ |
+| Screenshots/automation | ✅ | ❌ |
 
-**OwliaBot**:
-- Per-channel-user sessions ✅
-- JSONL persistence ✅
-- Sliding window ✅
-- Compaction/pruning ❌
+### Built-in Tools
 
-**Gap**: Session compaction, large session handling
+| Tool | Clawdbot | OwliaBot |
+|------|----------|----------|
+| exec (shell) | ✅ | ❌ |
+| web_search | ✅ Brave API | ❌ |
+| web_fetch | ✅ | ❌ |
+| browser | ✅ Playwright | ❌ |
+| tts | ✅ | ❌ |
+| image analysis | ✅ | ❌ |
+| message (cross-channel) | ✅ | ❌ |
+| cron management | ✅ | ❌ |
+| memory_search | ✅ | ✅ |
+| memory_get | ✅ | ✅ |
+| file operations | ✅ | ✅ |
 
----
+## Kernel Status
 
-### 5. Memory System
+OwliaBot aims to be a minimal "kernel" — the core runtime that other features build upon.
 
-**Clawdbot**:
-- Semantic search (Embedding API + vector store)
-- `memory_search` / `memory_get` tools
-- Auto index updates
-
-**OwliaBot**:
-- Keyword matching (glob + includes) ✅
-- `memory_search` / `memory_get` tools ✅
-- Semantic search ❌ (planned for later)
-
-**Gap**: Semantic search (intentional MVP tradeoff)
-
----
-
-### 6. Cron / Scheduled Tasks
-
-**Clawdbot**:
-- Heartbeat system
-- Custom cron jobs (dynamic add/remove)
-- Webhook triggers
-- Gmail Pub/Sub integration
-
-**OwliaBot**:
-- Heartbeat ✅ (basic)
-- Custom cron ❌
-- Webhooks ❌
-
-**Gap**: Dynamic cron, webhooks
-
----
-
-### 7. Skills System
-
-**Clawdbot**:
-- SKILL.md format (AgentSkills compatible)
-- Three-tier loading (bundled → managed → workspace)
-- ClawdHub registry (online publish/install)
-- Environment/config gating
-- Hot reload
-
-**OwliaBot**:
-- package.json + JS module format ✅
-- Single-tier loading (workspace only)
-- No registry ❌
-- Hot reload ✅
-
-**Difference**: Incompatible formats — OwliaBot uses native JS modules instead of SKILL.md
-
----
-
-### 8. Nodes (Mobile Integration)
-
-**Clawdbot**:
-- iOS/Android/macOS node pairing
-- Canvas rendering (A2UI)
-- Camera snap/clip
-- Screen recording
-- Location access
-- Push notifications
-
-**OwliaBot**:
-- Not implemented ❌
-
-**Gap**: Entire Nodes subsystem
-
----
-
-### 9. Browser Control
-
-**Clawdbot**:
-- Playwright integration
-- Remote browser control
-- Chrome extension relay
-- Screenshots, snapshots, automation
-
-**OwliaBot**:
-- Excluded by design ❌ (to reduce dependencies)
-
----
-
-### 10. Built-in Tools
-
-**Clawdbot** has rich built-in tools:
-- `web_search` (Brave API)
-- `web_fetch` (URL fetching)
-- `browser` (Playwright)
-- `exec` (Shell commands)
-- `tts` (Text-to-speech)
-- `image` (Image analysis)
-- `message` (Cross-channel send)
-- `cron` (Task management)
-- `nodes` (Mobile control)
-- `canvas` (Render control)
-- And more...
-
-**OwliaBot** current built-ins:
-- `echo` (test)
-- `help` (help)
-- `clear_session` (clear history)
-- `memory_search` / `memory_get`
-- `list_files` / `edit_file`
-
-**Gap**: exec, web_search, web_fetch, tts, image, etc.
-
----
-
-## Is OwliaBot a "Linux Kernel"?
-
-**Almost, but missing some kernel-level features.**
-
-OwliaBot implements:
-- ✅ Message receive/send loop
-- ✅ LLM calls + tool calling
-- ✅ Agentic loop
-- ✅ Session persistence
-- ✅ Skills extension mechanism
-- ✅ Basic Memory tools
-- ✅ Workspace loading (SOUL/IDENTITY/USER)
-
-Still missing "kernel-level" features:
-
-1. **WebSocket Control Plane** — No external clients can connect to control OwliaBot
-2. **Streaming Output** — No streaming responses, users wait for complete replies
-3. **exec Tool** — Agent cannot execute shell commands, severely limiting capabilities
-4. **web_fetch / web_search** — Cannot access web content
-
-With these 4 additions, OwliaBot would be a fully functional "kernel" — other features (browser, nodes, more channels) can be optional "userland" modules.
-
----
+| Kernel Feature | Status |
+|----------------|--------|
+| Message loop | ✅ Implemented |
+| LLM + tool calling | ✅ Implemented |
+| Agentic loop | ✅ Implemented |
+| Session persistence | ✅ Implemented |
+| Skills extension | ✅ Implemented |
+| Workspace loading | ✅ Implemented |
+| WebSocket control plane | ❌ **Missing** |
+| Streaming output | ❌ **Missing** |
+| exec tool | ❌ **Missing** |
+| web_fetch / web_search | ❌ **Missing** |
 
 ## Recommended Priorities
 
-1. **exec tool** — Most important, enables agent to run commands
-2. **web_fetch** — Simple to implement, lets agent read web pages
-3. **Streaming** — Better user experience
-4. **WebSocket control plane** — Support external UI/CLI connections
-
----
+| Priority | Feature | Reason |
+|----------|---------|--------|
+| 1 | exec tool | Enables agent to run commands |
+| 2 | web_fetch | Simple; lets agent read web pages |
+| 3 | Streaming | Better UX |
+| 4 | WebSocket | External UI/CLI support |
 
 ## Dependency Comparison
 
-| Aspect | Clawdbot | OwliaBot |
+| Metric | Clawdbot | OwliaBot |
 |--------|----------|----------|
 | Direct dependencies | 50+ | < 20 |
 | Native modules | Yes (sharp) | No |
