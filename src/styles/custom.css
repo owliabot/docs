@@ -11,3 +11,16 @@
   --sl-color-accent: #4f46e5;
   --sl-color-accent-high: #3730a3;
 }
+
+/* Dark mode logo glow effect */
+:root[data-theme='dark'] .site-title img,
+:root[data-theme='dark'] [data-hero-image] img {
+  filter: drop-shadow(0 0 8px rgba(163, 139, 255, 0.6))
+          drop-shadow(0 0 20px rgba(99, 102, 241, 0.4));
+}
+
+/* Hero image specific - slightly stronger glow */
+:root[data-theme='dark'] [data-hero-image] img {
+  filter: drop-shadow(0 0 12px rgba(163, 139, 255, 0.7))
+          drop-shadow(0 0 30px rgba(99, 102, 241, 0.5));
+}
