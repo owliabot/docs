@@ -9,10 +9,10 @@ export default defineConfig({
 		starlight({
 			title: 'OwliaBot',
 			logo: {
-				light: './src/assets/logo-light.svg',
-				dark: './src/assets/logo-dark.svg',
+				src: './src/assets/logo.png',
 				replacesTitle: false,
 			},
+			favicon: '/favicon.png',
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/owliabot/owliabot' },
 			],
