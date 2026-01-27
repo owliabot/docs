@@ -1,0 +1,43 @@
+---
+title: OwliaBot
+description: 面向加密世界的自托管 AI 代理——安全、可扩展、完全掌控。
+template: splash
+hero:
+  tagline: 面向加密世界的自托管 AI 代理——安全、可扩展、完全掌控。
+  image:
+    file: ../../../assets/logo.svg
+  actions:
+    - text: 开始使用
+      link: /zh/getting-started/introduction/
+      icon: right-arrow
+      variant: primary
+    - text: 在 GitHub 上查看
+      link: https://github.com/owliabot/owliabot
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## 功能特性
+
+<CardGrid stagger>
+  <Card title="自托管" icon="laptop">
+    完全运行在你自己的设备上。私钥永不离开你的设备。
+  </Card>
+  <Card title="原生加密" icon="puzzle">
+    为加密用户打造，采用三层密钥安全模型，实现安全自动化。
+  </Card>
+  <Card title="可扩展" icon="add-document">
+    通过 Skills 扩展能力——使用 JavaScript 模块为代理添加功能。
+  </Card>
+  <Card title="极简" icon="setting">
+    依赖足够精简。仅支持 Telegram 与 Discord，以提升安全性与可审计性。
+  </Card>
+</CardGrid>
+
+## 快速链接
+
+- [简介](/zh/getting-started/introduction/) — 什么是 OwliaBot，为什么值得使用
+- [快速开始](/zh/getting-started/quick-start/) — 5 分钟内跑起来
+- [Skills 系统](/zh/architecture/skills-system/) — 可扩展性如何实现
+- [安全模型](/zh/architecture/security/) — 三层密钥架构
