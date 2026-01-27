@@ -1,0 +1,43 @@
+---
+title: OwliaBot
+description: Self-hosted AI agent for crypto — secure, extensible, yours.
+template: splash
+hero:
+  tagline: Self-hosted AI agent for crypto — secure, extensible, yours.
+  image:
+    html: <span style="font-size:8rem">🦉</span>
+  actions:
+    - text: Get Started
+      link: /getting-started/introduction/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/owliabot/owliabot
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Features
+
+<CardGrid stagger>
+  <Card title="Self-Hosted" icon="laptop">
+    Run entirely on your own machine. Private keys never leave your device.
+  </Card>
+  <Card title="Crypto-Native" icon="puzzle">
+    Built for crypto users with a 3-tier key security model for safe automation.
+  </Card>
+  <Card title="Extensible" icon="add-document">
+    Add functionality through Skills — JavaScript modules that extend the agent.
+  </Card>
+  <Card title="Minimal" icon="setting">
+    Lean dependency footprint. Telegram + Discord only for security and auditability.
+  </Card>
+</CardGrid>
+
+## Quick Links
+
+- [Introduction](/getting-started/introduction/) — What is OwliaBot and why
+- [Quick Start](/getting-started/quick-start/) — Get up and running in 5 minutes
+- [Skills System](/architecture/skills-system/) — How extensibility works
+- [Security Model](/architecture/security/) — The 3-tier key architecture

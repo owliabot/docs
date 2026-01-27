@@ -1,0 +1,13 @@
+/* Custom styles for OwliaBot docs */
+
+:root {
+  --sl-color-accent-low: #1a1a2e;
+  --sl-color-accent: #6366f1;
+  --sl-color-accent-high: #a5b4fc;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #e0e7ff;
+  --sl-color-accent: #4f46e5;
+  --sl-color-accent-high: #3730a3;
+}
