@@ -24,8 +24,32 @@ export default defineConfig({
 			},
 			favicon: '/favicon.png',
 			social: [
-				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/u77MTs3aT8' },
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/owliabot/owliabot' },
+				{
+					icon: 'discord',
+					label: 'Discord',
+					href: 'https://discord.gg/u77MTs3aT8',
+					attrs: { target: '_blank', rel: 'noopener noreferrer' },
+				},
+				{
+					icon: 'github',
+					label: 'GitHub',
+					href: 'https://github.com/owliabot/owliabot',
+					attrs: { target: '_blank', rel: 'noopener noreferrer' },
+				},
+			],
+			head: [
+				{
+					tag: 'script',
+					attrs: { type: 'module' },
+					content: `
+						document.addEventListener('DOMContentLoaded', () => {
+							for (const link of document.querySelectorAll('.social-icons a')) {
+								link.setAttribute('target', '_blank');
+								link.setAttribute('rel', 'noopener noreferrer me');
+							}
+						});
+					`,
+				},
 			],
 			sidebar: [
 				{
