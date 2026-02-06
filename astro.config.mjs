@@ -27,7 +27,7 @@ export default defineConfig({
 				{
 					icon: 'discord',
 					label: 'Discord',
-					href: 'https://discord.gg/u77MTs3aT8',
+					href: 'https://discord.gg/xXR5hPfpGz',
 					attrs: { target: '_blank', rel: 'noopener noreferrer' },
 				},
 				{
