@@ -92,6 +92,11 @@ export default defineConfig({
 							translations: { 'zh-CN': '与 Clawdbot 对比' },
 							slug: 'architecture/comparison',
 						},
+						{
+							label: 'Agent Security',
+							translations: { 'zh-CN': 'Agent 安全增量' },
+							slug: 'architecture/agent-security',
+						},
 					],
 				},
 				{
